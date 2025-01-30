@@ -87,9 +87,9 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo1, TG(4)),
     COMBO(combo2, TO(0)),
 
-    COMBO(combo_fun, MIHAI_COMBO_FUN),
-    COMBO(combo_cn, MIHAI_COMBO_CN),
-    COMBO(combo_im, MIHAI_COMBO_IM),
+    [MIHAI_COMBO_FUN] = COMBO_ACTION(combo_fun),
+    [MIHAI_COMBO_CN] = COMBO_ACTION(combo_cn),
+    [MIHAI_COMBO_IM] = COMBO_ACTION(combo_im),
 };
 
 
