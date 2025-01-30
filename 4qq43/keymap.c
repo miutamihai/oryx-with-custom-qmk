@@ -186,19 +186,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case MIHAI_COMBO_FUN:
         if (record->event.pressed) {
-            SENDSTRING("function")
+            SENDSTRING("function");
         }
 
         break;
     case MIHAI_COMBO_CN:
         if (record->event.pressed) {
-            SENDSTRING("const")
+            SENDSTRING("const");
         }
 
         break;
     case MIHAI_COMBO_IM:
         if (record->event.pressed) {
-            SENDSTRING("import")
+            SENDSTRING("import");
         }
   }
   return true;
