@@ -9,6 +9,10 @@ enum custom_keycodes {
   HSV_74_255_255,
   HSV_169_255_255,
   MAC_SPOTLIGHT,
+
+  MIHAI_COMBO_FUN,
+  MIHAI_COMBO_CN,
+  MIHAI_COMBO_IM,
 };
 
 
@@ -74,10 +78,18 @@ const uint16_t PROGMEM combo0[] = { LT(1,KC_ENTER), LT(2,KC_SPACE), COMBO_END};
 const uint16_t PROGMEM combo1[] = { KC_5, KC_6, KC_4, KC_7, COMBO_END};
 const uint16_t PROGMEM combo2[] = { KC_D, KC_V, KC_K, KC_H, COMBO_END};
 
+const uint16_t PROGMEM combo_fun[] = { KC_F, KC_U, KC_N, COMBO_END }; 
+const uint16_t PROGMEM combo_cn[] = { KC_C, KC_N, COMBO_END }; 
+const uint16_t PROGMEM combo_im[] = { KC_I, KC_M, COMBO_END }; 
+
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, TT(3)),
     COMBO(combo1, TG(4)),
     COMBO(combo2, TO(0)),
+
+    COMBO(combo_fun, MIHAI_COMBO_FUN),
+    COMBO(combo_cn, MIHAI_COMBO_CN),
+    COMBO(combo_im, MIHAI_COMBO_IM),
 };
 
 
@@ -171,6 +183,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         rgblight_sethsv(169,255,255);
       }
       return false;
+
+    case MIHAI_COMBO_FUN:
+        if (record->event.pressed) {
+            SENDSTRING("function")
+        }
+
+        break;
+    case MIHAI_COMBO_CN:
+        if (record->event.pressed) {
+            SENDSTRING("const")
+        }
+
+        break;
+    case MIHAI_COMBO_IM:
+        if (record->event.pressed) {
+            SENDSTRING("import")
+        }
   }
   return true;
 }
