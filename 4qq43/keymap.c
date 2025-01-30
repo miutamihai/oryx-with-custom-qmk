@@ -186,15 +186,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case MIHAI_COMBO_FUN:
         if (record->event.pressed) {
-            SEND_STRING(
-                        SS_TAP(X_F),
-                        SS_TAP(X_U),
-                        SS_TAP(X_N),
-                        SS_TAP(X_C),
-                        SS_TAP(X_T),
-                        SS_TAP(X_I),
-                        SS_TAP(X_O),
-                        SS_TAP(X_N),
+            // No commas here
+            SEND_STRING(SS_TAP(X_F)
+                        SS_TAP(X_U)
+                        SS_TAP(X_N)
+                        SS_TAP(X_C)
+                        SS_TAP(X_T)
+                        SS_TAP(X_I)
+                        SS_TAP(X_O)
+                        SS_TAP(X_N)
                     );
         }
 
@@ -202,11 +202,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case MIHAI_COMBO_CN:
         if (record->event.pressed) {
             SEND_STRING(
-                        SS_TAP(X_C),
-                        SS_TAP(X_O),
-                        SS_TAP(X_N),
-                        SS_TAP(X_S),
-                        SS_TAP(X_T),
+                        SS_TAP(X_C)
+                        SS_TAP(X_O)
+                        SS_TAP(X_N)
+                        SS_TAP(X_S)
+                        SS_TAP(X_T)
                     );
         }
 
@@ -214,12 +214,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case MIHAI_COMBO_IM:
         if (record->event.pressed) {
             SEND_STRING(
-                        SS_TAP(X_I),
-                        SS_TAP(X_M),
-                        SS_TAP(X_P),
-                        SS_TAP(X_O),
-                        SS_TAP(X_R),
-                        SS_TAP(X_T),
+                        SS_TAP(X_I)
+                        SS_TAP(X_M)
+                        SS_TAP(X_P)
+                        SS_TAP(X_O)
+                        SS_TAP(X_R)
+                        SS_TAP(X_T)
                     );
         }
 
