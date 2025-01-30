@@ -8,6 +8,9 @@ enum custom_keycodes {
   HSV_0_255_255,
   HSV_74_255_255,
   HSV_169_255_255,
+  ST_MACRO_0,
+  ST_MACRO_1,
+  ST_MACRO_2,
   MAC_SPOTLIGHT,
 };
 
@@ -73,11 +76,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t PROGMEM combo0[] = { LT(1,KC_ENTER), LT(2,KC_SPACE), COMBO_END};
 const uint16_t PROGMEM combo1[] = { KC_5, KC_6, KC_4, KC_7, COMBO_END};
 const uint16_t PROGMEM combo2[] = { KC_D, KC_V, KC_K, KC_H, COMBO_END};
+const uint16_t PROGMEM combo3[] = { KC_F, KC_U, MT(MOD_RSFT, KC_N), COMBO_END};
+const uint16_t PROGMEM combo4[] = { KC_C, MT(MOD_RSFT, KC_N), COMBO_END};
+const uint16_t PROGMEM combo5[] = { MT(MOD_RGUI, KC_I), KC_M, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, TT(3)),
     COMBO(combo1, TG(4)),
     COMBO(combo2, TO(0)),
+    COMBO(combo3, ST_MACRO_0),
+    COMBO(combo4, ST_MACRO_1),
+    COMBO(combo5, ST_MACRO_2),
 };
 
 
@@ -145,6 +154,21 @@ bool rgb_matrix_indicators_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+    case ST_MACRO_0:
+    if (record->event.pressed) {
+      SEND_STRING(SS_TAP(X_F));
+    }
+    break;
+    case ST_MACRO_1:
+    if (record->event.pressed) {
+      SEND_STRING(SS_TAP(X_C));
+    }
+    break;
+    case ST_MACRO_2:
+    if (record->event.pressed) {
+      SEND_STRING(SS_TAP(X_I));
+    }
+    break;
     case MAC_SPOTLIGHT:
       HCS(0x221);
 
