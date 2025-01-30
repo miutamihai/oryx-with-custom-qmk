@@ -157,33 +157,6 @@ bool rgb_matrix_indicators_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case MAC_SPOTLIGHT:
-      HCS(0x221);
-
-    case RGB_SLD:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-      }
-      return false;
-    case HSV_0_255_255:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(0,255,255);
-      }
-      return false;
-    case HSV_74_255_255:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(74,255,255);
-      }
-      return false;
-    case HSV_169_255_255:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(169,255,255);
-      }
-      return false;
-
     case MIHAI_COMBO_FUN:
         if (record->event.pressed) {
             // No commas here
@@ -224,6 +197,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
 
         break;
+
+    case MAC_SPOTLIGHT:
+      HCS(0x221);
+
+    case RGB_SLD:
+      if (record->event.pressed) {
+        rgblight_mode(1);
+      }
+      return false;
+    case HSV_0_255_255:
+      if (record->event.pressed) {
+        rgblight_mode(1);
+        rgblight_sethsv(0,255,255);
+      }
+      return false;
+    case HSV_74_255_255:
+      if (record->event.pressed) {
+        rgblight_mode(1);
+        rgblight_sethsv(74,255,255);
+      }
+      return false;
+    case HSV_169_255_255:
+      if (record->event.pressed) {
+        rgblight_mode(1);
+        rgblight_sethsv(169,255,255);
+      }
+      return false;
+
   }
   return true;
 }
