@@ -87,9 +87,9 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo1, TG(4)),
     COMBO(combo2, TO(0)),
 
-    [MIHAI_COMBO_FUN] = COMBO_ACTION(combo_fun),
-    [MIHAI_COMBO_CN] = COMBO_ACTION(combo_cn),
-    [MIHAI_COMBO_IM] = COMBO_ACTION(combo_im),
+    COMBO(combo_fun, MIHAI_COMBO_FUN),
+    COMBO(combo_cn, MIHAI_COMBO_CN),
+    COMBO(combo_im, MIHAI_COMBO_IM),
 };
 
 
@@ -186,19 +186,41 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case MIHAI_COMBO_FUN:
         if (record->event.pressed) {
-            SEND_STRING("function");
+            SEND_STRING(
+                        SS_TAP(X_F),
+                        SS_TAP(X_U),
+                        SS_TAP(X_N),
+                        SS_TAP(X_C),
+                        SS_TAP(X_T),
+                        SS_TAP(X_I),
+                        SS_TAP(X_O),
+                        SS_TAP(X_N),
+                    );
         }
 
         break;
     case MIHAI_COMBO_CN:
         if (record->event.pressed) {
-            SEND_STRING("const");
+            SEND_STRING(
+                        SS_TAP(X_C),
+                        SS_TAP(X_O),
+                        SS_TAP(X_N),
+                        SS_TAP(X_S),
+                        SS_TAP(X_T),
+                    );
         }
 
         break;
     case MIHAI_COMBO_IM:
         if (record->event.pressed) {
-            SEND_STRING("import");
+            SEND_STRING(
+                        SS_TAP(X_I),
+                        SS_TAP(X_M),
+                        SS_TAP(X_P),
+                        SS_TAP(X_O),
+                        SS_TAP(X_R),
+                        SS_TAP(X_T),
+                    );
         }
 
         break;
