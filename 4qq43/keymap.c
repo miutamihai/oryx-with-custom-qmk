@@ -176,7 +176,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
     case ST_MACRO_3:
     if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_E));
+      SEND_STRING(SS_TAP(X_E) SS_TAP(X_X) SS_TAP(X_P) SS_TAP(X_O) SS_TAP(X_R) SS_TAP(X_T));
     }
     break;
     case MAC_SPOTLIGHT:
