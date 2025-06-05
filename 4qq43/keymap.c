@@ -1,6 +1,5 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
-#include "i18n.h"
 #define MOON_LED_LEVEL LED_LEVEL
 #define ML_SAFE_RANGE SAFE_RANGE
 
@@ -12,6 +11,7 @@ enum custom_keycodes {
   ST_MACRO_0,
   ST_MACRO_1,
   ST_MACRO_2,
+  ST_MACRO_3,
   MAC_SPOTLIGHT,
 };
 
@@ -34,8 +34,8 @@ enum tap_dance_codes {
   DANCE_13,
 };
 
-#define DUAL_FUNC_0 LT(5, KC_0)
-#define DUAL_FUNC_1 LT(14, KC_F24)
+#define DUAL_FUNC_0 LT(10, KC_Z)
+#define DUAL_FUNC_1 LT(1, KC_B)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
@@ -81,9 +81,7 @@ const uint16_t PROGMEM combo2[] = { KC_D, KC_V, KC_K, KC_H, COMBO_END};
 const uint16_t PROGMEM combo3[] = { KC_F, KC_U, MT(MOD_RSFT, KC_N), COMBO_END};
 const uint16_t PROGMEM combo4[] = { KC_C, MT(MOD_RSFT, KC_N), COMBO_END};
 const uint16_t PROGMEM combo5[] = { MT(MOD_RGUI, KC_I), KC_M, COMBO_END};
-const uint16_t PROGMEM combo6[] = { MT(MOD_LCTL, KC_S), KC_L, COMBO_END};
-const uint16_t PROGMEM combo7[] = { MT(MOD_LCTL, KC_S), MT(MOD_RCTL, KC_E), COMBO_END};
-const uint16_t PROGMEM combo8[] = { MT(MOD_LCTL, KC_S), MT(MOD_LALT, KC_O), COMBO_END};
+const uint16_t PROGMEM combo6[] = { MT(MOD_RCTL, KC_E), KC_X, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo0, TT(3)),
@@ -92,9 +90,7 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(combo3, ST_MACRO_0),
     COMBO(combo4, ST_MACRO_1),
     COMBO(combo5, ST_MACRO_2),
-    COMBO(combo6, SE_AA),
-    COMBO(combo7, SE_ADIA),
-    COMBO(combo8, SE_OSLH),
+    COMBO(combo6, ST_MACRO_3),
 };
 
 
@@ -176,6 +172,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case ST_MACRO_2:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_I) SS_TAP(X_M) SS_TAP(X_P) SS_TAP(X_O) SS_TAP(X_R) SS_TAP(X_T));
+    }
+    break;
+    case ST_MACRO_3:
+    if (record->event.pressed) {
+      SEND_STRING(SS_TAP(X_E));
     }
     break;
     case MAC_SPOTLIGHT:
