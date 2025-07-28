@@ -36,8 +36,11 @@ enum tap_dance_codes {
   DANCE_13,
 };
 
-#define DUAL_FUNC_0 LT(10, KC_F5)
-#define DUAL_FUNC_1 LT(13, KC_F23)
+#define DUAL_FUNC_0 LT(12, KC_Z)
+#define DUAL_FUNC_1 LT(4, KC_W)
+#define DUAL_FUNC_2 LT(2, KC_F23)
+#define DUAL_FUNC_3 LT(6, KC_F10)
+#define DUAL_FUNC_4 LT(10, KC_F24)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
@@ -77,8 +80,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [5] = LAYOUT_voyager(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, SE_OSLH,        KC_TRANSPARENT, 
-    KC_TRANSPARENT, SE_ADIA,        KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, SE_AA,          KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DUAL_FUNC_3,    KC_TRANSPARENT, 
+    KC_TRANSPARENT, DUAL_FUNC_2,    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, DUAL_FUNC_4,    KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
                                                     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT
   ),
@@ -123,7 +126,7 @@ const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
 
     [4] = { {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107}, {0,233,107} },
 
-    [5] = { {94,218,204}, {94,218,204}, {94,218,204}, {94,218,204}, {94,218,204}, {94,218,204}, {94,218,204}, {39,231,229}, {39,231,229}, {39,231,229}, {39,231,229}, {39,231,229}, {94,218,204}, {149,218,204}, {39,231,229}, {39,231,229}, {0,0,0}, {39,231,229}, {94,218,204}, {39,231,229}, {39,231,229}, {39,231,229}, {39,231,229}, {39,231,229}, {13,255,255}, {13,255,255}, {94,218,204}, {94,218,204}, {94,218,204}, {94,218,204}, {94,218,204}, {94,218,204}, {39,231,229}, {39,231,229}, {39,231,229}, {39,231,229}, {149,218,204}, {94,218,204}, {39,231,229}, {39,231,229}, {39,231,229}, {39,231,229}, {149,218,204}, {94,218,204}, {39,231,229}, {39,231,229}, {39,231,229}, {39,231,229}, {39,231,229}, {94,218,204}, {13,255,255}, {13,255,255} },
+    [5] = { {94,218,204}, {94,218,204}, {94,218,204}, {94,218,204}, {94,218,204}, {94,218,204}, {94,218,204}, {39,231,229}, {39,231,229}, {39,231,229}, {39,231,229}, {39,231,229}, {94,218,204}, {149,218,204}, {39,231,229}, {39,231,229}, {39,231,229}, {39,231,229}, {94,218,204}, {39,231,229}, {39,231,229}, {39,231,229}, {39,231,229}, {39,231,229}, {13,255,255}, {13,255,255}, {94,218,204}, {94,218,204}, {94,218,204}, {94,218,204}, {94,218,204}, {94,218,204}, {39,231,229}, {39,231,229}, {39,231,229}, {39,231,229}, {149,218,204}, {94,218,204}, {39,231,229}, {39,231,229}, {39,231,229}, {39,231,229}, {149,218,204}, {94,218,204}, {39,231,229}, {39,231,229}, {39,231,229}, {39,231,229}, {39,231,229}, {94,218,204}, {13,255,255}, {13,255,255} },
 
 };
 
@@ -224,6 +227,51 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           register_code16(KC_TAB);
         } else {
           unregister_code16(KC_TAB);
+        }  
+      }  
+      return false;
+    case DUAL_FUNC_2:
+      if (record->tap.count > 0) {
+        if (record->event.pressed) {
+          register_code16(KC_A);
+        } else {
+          unregister_code16(KC_A);
+        }
+      } else {
+        if (record->event.pressed) {
+          register_code16(SE_ADIA);
+        } else {
+          unregister_code16(SE_ADIA);
+        }  
+      }  
+      return false;
+    case DUAL_FUNC_3:
+      if (record->tap.count > 0) {
+        if (record->event.pressed) {
+          register_code16(SE_SCLN);
+        } else {
+          unregister_code16(SE_SCLN);
+        }
+      } else {
+        if (record->event.pressed) {
+          register_code16(SE_OSLH);
+        } else {
+          unregister_code16(SE_OSLH);
+        }  
+      }  
+      return false;
+    case DUAL_FUNC_4:
+      if (record->tap.count > 0) {
+        if (record->event.pressed) {
+          register_code16(KC_O);
+        } else {
+          unregister_code16(KC_O);
+        }
+      } else {
+        if (record->event.pressed) {
+          register_code16(SE_AA);
+        } else {
+          unregister_code16(SE_AA);
         }  
       }  
       return false;
