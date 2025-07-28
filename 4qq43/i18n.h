@@ -2,3 +2,4 @@
 #define SE_SCLN S(KC_COMM)
 #define SE_OSLH KC_SCLN
 #define SE_AA KC_LBRC
+#define SE_SLSH S(KC_7)
